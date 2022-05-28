@@ -13,10 +13,16 @@ const ctr_cart=require('../controller/ctr_cart')
 //------------ Signin/signup --------------
  
 // #Register User
-router.post('/register',ctr_user.register_User)
+router.post('/register',ctr_user.validEmail)
 
 // #Login User
 router.post('/login',ctr_user.login_user)
+
+// #valid User
+router.post('/varify-email',ctr_user.register_User)
+
+// #valid User
+router.post('/forgetpassword/:id',ctr_user.forgetPassword)
 
 //---------------- GIT ------------------
 

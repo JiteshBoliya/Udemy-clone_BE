@@ -18,6 +18,10 @@ const userSchema = new mongoose.Schema({
     },
     token:{
         type:String,
+    },
+    isDeleted:{
+      type:Boolean,
+      default:false
     }
 },{timeStamp:true}
 );

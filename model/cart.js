@@ -16,6 +16,10 @@ const CartSchema = new mongoose.Schema(
     },
     discount:{
         type:Number
+    },
+    isDeleted:{
+      type:Boolean,
+      default:false
     }
   },
   { timeStamp: true }

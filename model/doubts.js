@@ -25,7 +25,11 @@ const DoubtsSchema = new mongoose.Schema(
                 type:String
             }
         }
-    ]
+    ],
+    isDeleted:{
+      type:Boolean,
+      default:false
+    }
   },
   { timeStamp: true }
 );

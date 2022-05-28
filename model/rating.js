@@ -19,6 +19,10 @@ const RatingSchema = new mongoose.Schema(
     },
     uploadDate:{
         type:Date
+    },
+    isDeleted:{
+      type:Boolean,
+      default:false
     }
 },
   { timeStamp: true }

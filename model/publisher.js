@@ -32,15 +32,11 @@ const publisherSchema = new mongoose.Schema(
         youtube:{
             type:String
         }
-    },    
-    // publish: [
-    //   {
-    //     course: {
-    //       type: mongoose.Schema.Types.ObjectId,
-    //       ref: "Course",
-    //     },
-    //   },
-    // ],
+    },
+    isDeleted:{
+      type:Boolean,
+      default:false
+    }
   },
   { timeStamp: true }
 );

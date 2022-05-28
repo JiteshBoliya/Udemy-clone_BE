@@ -19,6 +19,9 @@ const SubscriberSchema = new mongoose.Schema(
     nationality: {
       type: String,
     },
+    whatdoyoudo:{
+        type:String
+    },
     image: {
       type: Object,
     },
@@ -38,6 +41,10 @@ const SubscriberSchema = new mongoose.Schema(
         },
       },
     ],
+    isDeleted:{
+      type:Boolean,
+      default:false
+    }
   },
   { timeStamp: true }
 );

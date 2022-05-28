@@ -7,6 +7,10 @@ const SpecificationSchema = new mongoose.Schema({
     },
     icon:{
         type:Object,  
+    },
+    isDeleted:{
+      type:Boolean,
+      default:false
     }
 },{timeStamp:true}
 );

@@ -9,20 +9,26 @@ const ctr_rating=require('../controller/ctr_rating')
 const ctr_catagory= require('../controller/ctr_catagory')
 const ctr_specification=require('../controller/ctr_specification')
 const ctr_cart=require('../controller/ctr_cart')
+const ctr_counter= require('../controller/ctr_counter')
+const multer = require('multer')
+const formdata = multer()
 
 //------------ Signin/signup --------------
  
 // #Register User
-router.post('/register',ctr_user.validEmail)
+router.post('/register',formdata.none(),ctr_user.validEmail)
 
 // #Login User
-router.post('/login',ctr_user.login_user)
+router.post('/login',formdata.none(),ctr_user.login_user)
 
 // #valid User
-router.post('/varify-email',ctr_user.register_User)
+router.post('/varify-email',formdata.none(),ctr_user.register_User)
 
 // #valid User
-router.post('/forgetpassword/:id',ctr_user.forgetPassword)
+router.post('/forgetpassword',formdata.none(),ctr_user.forgetPassword)
+
+// #User details
+router.get('/userDetail/:id',ctr_user.get_user_byId)
 
 //---------------- GIT ------------------
 
@@ -129,5 +135,12 @@ router.get('/cart/:id',ctr_cart.get_cart)
 
 // #Delete cart
 router.post('/cart/delete/:id',ctr_cart.Delete_cart)
+
+
+//---------------- counter ----------------
+
+router.get('/count-subscriber',ctr_counter.count_subscribers)
+
+router.get('/count-publisher',ctr_counter.count_publishers)
 
 module.exports = router

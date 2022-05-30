@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     },
     type:{
         type:String,
-        default:'user'
+        default:'subscriber'
     },
     token:{
         type:String,

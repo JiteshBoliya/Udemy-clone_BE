@@ -4,15 +4,18 @@ const Cryptr = require('cryptr');
 const cryptr = new Cryptr('myTotallySecretKey');
 const { response } = require("express");
 const nodemailer = require("nodemailer");
+const Subscriber = require('../model/subscriber')
+const Publisher = require('../model/publisher')
+
 let code=""
 let loginData=""
 let status=0
 
 // #Register user
 exports.register_User = async function (req, res) {
-  console.log("send:"+code);
-  console.log("store:"+loginData);
-  console.log("get:"+req.body.code);
+  // console.log("send:"+code);
+  // console.log("store:"+loginData);
+  // console.log("get:"+req.body.code);
   if(code==req.body.code){
   try {
     users.count({email:loginData.email},(_err,data)=>{
@@ -20,16 +23,29 @@ exports.register_User = async function (req, res) {
         const register = new users(loginData);
         register.password = cryptr.encrypt(loginData.password);
         register.save();
-        res.status(201).send(register);
+
+        if(register.type=="publisher"){
+          const publisher=new Publisher({user:register._id})
+          publisher.save()
+          return res.status(201).send({register,type:"publisher created"});
+        }
+        else if(register.type=="subscriber"){
+          const subscriber=new Subscriber({user:register._id})
+          subscriber.save()
+          return res.status(201).send({register,type:"subscriber created"});
+        }
+        else return res.status(401).send({error:"Not valid user..!"})
+        
+      //  return res.status(201).send({register});
       }
-      else res.status(406).send({error:"Email Id is already Registered..!"})
+      else return res.status(406).send({error:"Email Id is already Registered..!"})
     })
   } catch (error) {
     res.status(404).send({ error: error.message });
   }
 }
 else{
-  res.status(406).send({error:"code in not valid..!"})
+  res.status(406).send({error:"code is not valid..!"})
 }
 
 };
@@ -67,17 +83,18 @@ exports.get_user_byId = async(req,res)=>{
 exports.validEmail =async(req,res)=>{
   loginData=req.body
   code=makeid()
+  console.log(loginData);
   status=mailtoverify(loginData.email)
-  res.status(200).send({status:1})
+  res.status(200).send({status:"email sent"})
 }
 // #Check valid email
 exports.forgetPassword =async(req,res)=>{
-  const Users = users.findOne({_id:req.params.id}, function (err, data) {
+  const Users = users.findOne({email:req.body.email}, function (err, data) {
     if (err) res.status(400).send({ error: err.message });
     let email=data.email
     let password=cryptr.decrypt(data.password)
     forgetPasswordMail(email,password)
-    res.status(200).send(data);
+    res.status(200).send({data:"data"});
   });
 }
 // #class code genrator
@@ -104,14 +121,9 @@ const mailtoverify =(email) => {
     subject: "Verify your Email",
     html: `here code to verify your email <h1> ${code} </h1>`,
   };
-  transporter.sendMail(mailOptions, function (error, info) {  
-    if (error) return 0
-    else {
-      status =1
-    }
-    return info
-  })
-  return 1
+   transporter.sendMail(mailOptions, function (error, info) {  
+     console.log(info);
+    })
 };
 // #forget password mail
 const forgetPasswordMail =(email,password) => {
@@ -130,8 +142,6 @@ const forgetPasswordMail =(email,password) => {
   };
   transporter.sendMail(mailOptions, function (error, info) {  
     if (error) return 0
-    // else return 1
-    // return info
   })
   return 1
 };

@@ -10,7 +10,7 @@ exports.set_GIT=async function(req, res){
     }
 }
 exports.get_GIT= async function(req, res){
-    const git=GIT.find({},(err,data)=>{
+    const git=GIT.find({isDeleted:false},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
     })
@@ -33,3 +33,49 @@ exports.Delete_GIT = async (req,res) => {
       res.status(200).send(result);
     });
 };
+exports.get_GIT_limit= async function(req, res){
+  const git=GIT.find({isDeleted:false},(err,data)=>{
+      if (err) res.status(400).send({ error: err.message })
+      res.status(200).send(data)     
+  }).limit(3)
+}
+exports.ChangeStatus_GIT = async (req,res) => {
+  var query = {_id:req.params.id},
+      update = {Status:req.params.state},
+      options = { upsert: true, setDefaultsOnInsert: true };
+    const git=GIT.findOneAndUpdate(query, update, options, function (error, result) {
+    if (error) return;
+    res.status(200).send(result);
+  });
+}
+exports.get_GIT_pagger= async function(req, res){
+  GIT.find({isDeleted:false},(err,data)=>{
+      if (err) res.status(400).send({ error: err.message })
+      res.status(200).send(data)     
+  }).skip(req.params.page).limit(3)
+}
+exports.get_GITbysort= async function(req, res){
+  var sortObject = {};
+  var stype =req.params.sortby
+  if(req.params.sortwith=='Assending'){
+      var sortwith=-1
+  }
+  else{
+  var sortwith=1
+  }
+  sortObject[stype] = sortwith;
+
+  const git=GIT.find({isDeleted:false},(err,data)=>{
+      if (err) res.status(400).send({ error: err.message })
+      res.status(200).send(data)   
+  }).sort(sortObject).limit(3)
+}
+exports.DeleteGIT = async (req,res) => {
+  var query = {_id:req.params.id},
+      update = {isDeleted:true},
+      options = { upsert: true, setDefaultsOnInsert: true };
+    const git=GIT.findOneAndUpdate(query, update, options, function (error, result) {
+    if (error) return;
+    res.status(200).send(result);
+  });
+}

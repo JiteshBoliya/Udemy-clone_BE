@@ -34,6 +34,9 @@ exports.register_User = async function (req, res) {
           subscriber.save()
           return res.status(201).send({register,type:"subscriber created"});
         }
+        else if(register.type=="admin"){
+          return res.status(201).send({register,type:"Admin created"});
+        }
         else return res.status(401).send({error:"Not valid user..!"})
         
       //  return res.status(201).send({register});
@@ -67,13 +70,13 @@ exports.login_user = async (req,res) => {
 };
 // #User Detail by id
 exports.get_user_byId = async(req,res)=>{
-  const Users = users.findOne({_id:req.params.id}, function (err, data) {
+  const Users = users.findOne({_id:req.params.id},(err, data) =>{
       if (err) res.status(400).send({ error: err.message });
-      res.status(200).send(data);
+      res.status(201).send({data});
     });
 }
 // #User Detail by token
-exports.get_user_byId = async(req,res)=>{
+exports.get_user_bytoken = async(req,res)=>{
   const Users = users.findOne({token:req.params.token}, function (err, data) {
       if (err) res.status(400).send({ error: err.message });
       res.status(200).send(data);
@@ -97,6 +100,16 @@ exports.forgetPassword =async(req,res)=>{
     res.status(200).send({data:"data"});
   });
 }
+exports.resetpassword = async (req,res) => {
+  var pass=cryptr.encrypt(req.body.password);
+  var query = {_id:req.params.id},
+    update = {password:pass},
+    options = { upsert: true, setDefaultsOnInsert: true };
+  const user=users.findOneAndUpdate(query, update, options, function (error, result) {
+    if (error) return;
+    res.status(200).send(result);
+  });
+};
 // #class code genrator
 const makeid=()=>{
   let text = "";
@@ -112,7 +125,7 @@ const mailtoverify =(email) => {
     service: "gmail",
     auth: {
       user: "jiteshb8182@gmail.com",
-      pass: "",
+      pass: "jitesh8182",
     },
   });
   var mailOptions = {
@@ -131,7 +144,7 @@ const forgetPasswordMail =(email,password) => {
     service: "gmail",
     auth: {
       user: "jiteshb8182@gmail.com",
-      pass: "",
+      pass: "jitesh8182",
     },
   });
   var mailOptions = {

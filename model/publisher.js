@@ -7,6 +7,9 @@ const publisherSchema = new mongoose.Schema(
         type:mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
+    name:{
+        type:String
+    },
     phoneno: {
       type: Number,
     },
@@ -32,6 +35,10 @@ const publisherSchema = new mongoose.Schema(
         youtube:{
             type:String
         }
+    },
+    status:{
+      type:String,
+      default:"Active"
     },
     isDeleted:{
       type:Boolean,

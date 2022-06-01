@@ -15,6 +15,12 @@ exports.get_subscribers= async function(req, res){
         res.status(200).send(data)     
     })
 }
+exports.get_subscriber_limit= async function(req, res){
+    const subscriber=Subscriber.find({},(err,data)=>{
+        if (err) res.status(400).send({ error: err.message })
+        res.status(200).send(data)     
+    }).populate("user","email").limit(3)
+}
 exports.get_subscriber= async function(req, res){
     const subscriber=Subscriber.find({_id:req.params.id},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
@@ -30,6 +36,7 @@ exports.update_subscriber = async (req,res) => {
     });
 };
 exports.Delete_subscriber = async (req,res) => {
+    console.log("hey");
     var query = {_id:req.params.id},
       update = {isDeleted:true},
       options = { upsert: true, setDefaultsOnInsert: true };

@@ -19,7 +19,10 @@ const SubscriberSchema = new mongoose.Schema(
     nationality: {
       type: String,
     },
-    whatdoyoudo:{
+    email: {
+      type: String,
+    },
+    job:{
         type:String
     },
     image: {

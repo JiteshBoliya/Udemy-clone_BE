@@ -14,7 +14,7 @@ const CourseSchema = new mongoose.Schema(
       type: String,
     },
     uploadDate: {
-      type: String,
+          type: String,
     },
     price: {
       type: Number,
@@ -49,9 +49,6 @@ const CourseSchema = new mongoose.Schema(
         },
       },
     ],
-    uploadDate:{
-        type:Date
-    },
     isDeleted:{
       type:Boolean,
       default:false

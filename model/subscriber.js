@@ -9,24 +9,31 @@ const SubscriberSchema = new mongoose.Schema(
     },
     firstname: {
       type: String,
+      default:""
     },
     lastname: {
       type: String,
+      default:""
     },
     phoneno: {
       type: Number,
+      default:0000000
     },
     nationality: {
       type: String,
+      default:""
     },
     email: {
       type: String,
+      default:""
     },
     job:{
-        type:String
+        type:String,
+        default:""
     },
     image: {
       type: Object,
+      default:""
     },
     enroll: [
       {

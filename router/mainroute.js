@@ -5,6 +5,7 @@ const ctr_GIT= require('../controller/ctr_getintouch')
 const ctr_user= require('../controller/ctr_user')
 const ctr_subscriber= require('../controller/ctr_subscriber')
 const ctr_publisher= require('../controller/ctr_publisher')
+const ctr_course= require('../controller/ctr_course')
 const ctr_rating=require('../controller/ctr_rating')
 const ctr_catagory= require('../controller/ctr_catagory')
 const ctr_specification=require('../controller/ctr_specification')
@@ -110,6 +111,27 @@ router.get('/publisher/sort/:sortby/:sortwith',ctr_publisher.get_Publisherbysort
 
 // #Update status
 router.get('/publisher/statusChange/:id/:state',ctr_publisher.statusChange_publisher)
+
+//------------ Course --------------
+
+// #Add course
+router.post('/course',ctr_course.set_course)
+
+// #Show course
+router.get('/course',ctr_course.get_courses)
+
+// #Show course limit
+router.get('/course-limit',ctr_course.get_coursesLimit)
+
+// #Show course details
+router.get('/course/:id',ctr_course.get_course)
+
+// #Update course
+router.post('/course/update/:id',ctr_course.update_course)
+
+// #Delete course
+router.post('/course/delete/:id',ctr_course.Delete_course)
+
 
 //------------ Rating --------------
 

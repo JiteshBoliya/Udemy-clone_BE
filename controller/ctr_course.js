@@ -15,6 +15,12 @@ exports.get_courses= async function(req, res){
         res.status(200).send(data)     
     })
 }
+exports.get_coursesLimit= async function(req, res){
+    const course=Course.find({},(err,data)=>{
+        if (err) res.status(400).send({ error: err.message })
+        res.status(200).send(data)     
+    }).limit(3)
+}
 exports.get_course= async function(req, res){
     const course=Course.find({_id:req.params.id},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })

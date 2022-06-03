@@ -14,7 +14,11 @@ const CourseSchema = new mongoose.Schema(
       type: String,
     },
     uploadDate: {
-          type: String,
+          type: Date,
+          default: new Date()
+    },
+    duration:{
+        type:Number
     },
     price: {
       type: Number,
@@ -23,24 +27,6 @@ const CourseSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Catagory",
     },
-    curriculam: [
-      {
-        title: {
-          type: String,
-        },
-        files: [
-          {
-            file: {
-              type: Object,
-            },
-            lock: {
-              type: String,
-              default: "true",
-            },
-          },
-        ],
-      },
-    ],
     specification: [
       {
         specification: {

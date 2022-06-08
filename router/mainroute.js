@@ -11,6 +11,7 @@ const ctr_catagory= require('../controller/ctr_catagory')
 const ctr_specification=require('../controller/ctr_specification')
 const ctr_cart=require('../controller/ctr_cart')
 const ctr_counter= require('../controller/ctr_counter')
+const ctr_tutorial= require('../controller/ctr_tutorial')
 const multer = require('multer')
 const formdata = multer()
 
@@ -115,7 +116,15 @@ router.get('/publisher/statusChange/:id/:state',ctr_publisher.statusChange_publi
 //------------ Course --------------
 
 // #Add course
-router.post('/course',ctr_course.set_course)
+router.post('/course/AddTutorial',ctr_tutorial.set_Tutorial)
+
+router.post('/course/AddCourse',formdata.none(),ctr_course.set_course)
+
+router.get('/courseList/:publisher',ctr_course.get_courses_byPublisher)
+
+router.get('/tutorialList/:publisher',ctr_tutorial.get_Tutorials_byPublisher)
+
+router.get('/tutorialList/update-Lock/:id/:lock',ctr_tutorial.update_lock)
 
 // #Show course
 router.get('/course',ctr_course.get_courses)
@@ -157,6 +166,8 @@ router.post('/catagory',ctr_catagory.set_catagory)
 
 // #Show catagorys
 router.get('/catagory',ctr_catagory.get_catagorys)
+
+router.get('/catagory/All',ctr_catagory.get_AllCatagorys)
 
 // #Update catagory
 router.post('/catagory/update/:id',ctr_catagory.update_catagory)

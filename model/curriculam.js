@@ -10,10 +10,13 @@ const CurriculamSchema = new mongoose.Schema(
     title: {
       type: String,
     },
-    files: [
+    videos: [
       {
-        file: {
-          type: Object,
+        title:{
+          type:String
+        },
+        link: {
+          type: String,
         },
         lock: {
           type: String,

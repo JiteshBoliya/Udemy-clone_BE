@@ -72,7 +72,7 @@ exports.login_user = async (req,res) => {
 exports.get_user_byId = async(req,res)=>{
   const Users = users.findOne({_id:req.params.id},(err, data) =>{
       if (err) res.status(400).send({ error: err.message });
-      res.status(201).send({data});
+      else res.status(201).send({data});
     });
 }
 // #User Detail by token
@@ -125,7 +125,7 @@ const mailtoverify =(email) => {
     service: "gmail",
     auth: {
       user: "jiteshb8182@gmail.com",
-      pass: "jitesh8182",
+      pass: "xbltmmfflttobfhj",
     },
   });
   var mailOptions = {
@@ -144,7 +144,7 @@ const forgetPasswordMail =(email,password) => {
     service: "gmail",
     auth: {
       user: "jiteshb8182@gmail.com",
-      pass: "jitesh8182",
+      pass: "xbltmmfflttobfhj",
     },
   });
   var mailOptions = {

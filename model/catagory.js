@@ -6,7 +6,7 @@ const CatagorySchema = new mongoose.Schema({
         type: String,
     },
     icon:{
-        type:Object,
+        type:String,
     },
     isDeleted:{
       type:Boolean,

@@ -13,7 +13,13 @@ exports.get_catagorys= async function(req, res){
     const catagory=Catagory.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    })
+    }).limit(5)
+}
+exports.get_AllCatagorys= async function(req, res){
+  const catagory=Catagory.find({},(err,data)=>{
+      if (err) res.status(400).send({ error: err.message })
+      res.status(200).send(data)     
+  })
 }
 exports.update_catagory = async (req,res) => {
     var query = {_id:req.params.id},

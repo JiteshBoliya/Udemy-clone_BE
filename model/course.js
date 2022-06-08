@@ -3,6 +3,9 @@ const validator = require("validator");
 
 const CourseSchema = new mongoose.Schema(
   {
+    image:{
+        type:String
+    },
     publisher: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Publisher",
@@ -27,14 +30,14 @@ const CourseSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Catagory",
     },
-    specification: [
-      {
-        specification: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Specification",
-        },
-      },
-    ],
+    // specification: [
+    //   {
+    //     specification: {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: "Specification",
+    //     },
+    //   },
+    // ],
     isDeleted:{
       type:Boolean,
       default:false

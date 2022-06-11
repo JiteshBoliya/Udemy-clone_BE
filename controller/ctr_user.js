@@ -86,7 +86,7 @@ exports.get_user_bytoken = async(req,res)=>{
 exports.validEmail =async(req,res)=>{
   loginData=req.body
   code=makeid()
-  console.log(loginData);
+  // console.log(loginData);
   status=mailtoverify(loginData.email)
   res.status(200).send({status:"email sent"})
 }
@@ -135,7 +135,7 @@ const mailtoverify =(email) => {
     html: `here code to verify your email <h1> ${code} </h1>`,
   };
    transporter.sendMail(mailOptions, function (error, info) {  
-     console.log(info);
+    //  console.log(info);
     })
 };
 // #forget password mail

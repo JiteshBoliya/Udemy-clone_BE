@@ -14,7 +14,7 @@ const publisherSchema = new mongoose.Schema(
       type: Number,
     },
     image: {
-      type: Object,
+      type: String,
     },
     job:{
         type:String

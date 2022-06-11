@@ -1,9 +1,10 @@
 const express = require('express')
 const cors=require('cors')
-const rt_main=require('./router/mainroute')
+const rt_main=require('./router/mainroute') 
 require('./db/mongoose')
 const app= express()
 const port=process.env.PORT || 3000
+// const stripe = require('stripe')('SECRET_KEY');
 app.use(express.json())
 app.use(cors())
 app.use(rt_main)

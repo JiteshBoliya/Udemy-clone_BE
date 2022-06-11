@@ -12,9 +12,10 @@ const ctr_specification=require('../controller/ctr_specification')
 const ctr_cart=require('../controller/ctr_cart')
 const ctr_counter= require('../controller/ctr_counter')
 const ctr_tutorial= require('../controller/ctr_tutorial')
+const ctr_purchase= require('../controller/ctr_userview')
+const ctr_payment=require('../controller/ctr_payment')
 const multer = require('multer')
 const formdata = multer()
-
 //------------ Signin/signup --------------
  
 // #Register User
@@ -92,6 +93,9 @@ router.post('/publisher',ctr_publisher.set_publisher)
 // #Show publishers
 router.get('/publisher',ctr_publisher.get_publishers)
 
+// #Show limit publishers
+router.get('/publisher/some',ctr_publisher.getsome_publishers)
+
 // #Show publishers
 router.get('/publisher-limit',ctr_publisher.get_publishers_limit)
 
@@ -124,6 +128,8 @@ router.get('/courseList/:publisher',ctr_course.get_courses_byPublisher)
 
 router.get('/tutorialList/:publisher',ctr_tutorial.get_Tutorials_byPublisher)
 
+router.get('/tutorial/:id',ctr_tutorial.get_Tutorials_byCourse)
+
 router.get('/tutorialList/update-Lock/:id/:lock',ctr_tutorial.update_lock)
 
 // #Show course
@@ -131,6 +137,8 @@ router.get('/course',ctr_course.get_courses)
 
 // #Show course limit
 router.get('/course-limit',ctr_course.get_coursesLimit)
+
+router.get('/course/popular',ctr_course.get_coursesLimit)
 
 // #Show course details
 router.get('/course/:id',ctr_course.get_course)
@@ -141,7 +149,7 @@ router.post('/course/update/:id',ctr_course.update_course)
 // #Delete course
 router.post('/course/delete/:id',ctr_course.Delete_course)
 
-
+router.get('/course/getUser/:id',ctr_purchase.get_courses_userlist)
 //------------ Rating --------------
 
 // #Add rating
@@ -200,6 +208,14 @@ router.get('/cart/:id',ctr_cart.get_cart)
 // #Delete cart
 router.post('/cart/delete/:id',ctr_cart.Delete_cart)
 
+//--------------- purchase -------------------
+router.post('/purchase',ctr_purchase.set_purchase)
+
+router.get('/purchase/:id',ctr_purchase.get_user_courses)
+
+router.get('/publisherdetails/:id',ctr_publisher.get_publisher)
+
+router.get('/subsciberdetails/:id',ctr_subscriber.get_subscriber)
 
 //---------------- counter ----------------
 
@@ -208,5 +224,32 @@ router.get('/count-subscriber',ctr_counter.count_subscribers)
 router.get('/count-publisher',ctr_counter.count_publishers)
 
 router.get('/count-GIT',ctr_counter.count_GIT)
+
+router.get('/course/totalEnroll/:id',ctr_counter.count_enrollcourse)
+
+//------------------ payment -------------------
+// router.post("/charge", (req, res) => {
+//     try {
+//       stripe.customers
+//         .create({
+//           name: req.body.name,
+//           email: req.body.email,
+//           source: req.body.stripeToken
+//         })
+//         .then(customer =>
+//           stripe.charges.create({
+//             amount: req.body.amount * 100,
+//             currency: "inr",
+//             customer: customer.id
+//           })
+//         )
+//         .then(() => res.status(200).send({status:"Payment done"}))
+//         .catch(err => console.log(err));
+//     } catch (err) {
+//       res.send(err);
+//     }
+//   });
+
+// router.post('order',token({ required: true }),ctr_payment.create)
 
 module.exports = router

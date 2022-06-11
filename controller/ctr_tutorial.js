@@ -9,6 +9,12 @@ exports.set_Tutorial=async function(req, res){
         res.status(404).send({error: error.message})
     }
 }
+exports.get_Tutorials_byCourse= async function(req, res){
+    const Tutorial=Tutorials.find({course:req.params.id,isDeleted:false},(err,data)=>{
+        if (err) res.status(400).send({ error: err.message })
+        res.status(200).send(data)     
+    }).populate('course')
+}
 exports.get_Tutorials= async function(req, res){
     const Tutorial=Tutorials.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })

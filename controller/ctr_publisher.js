@@ -15,6 +15,13 @@ exports.get_publishers= async function(req, res){
         res.status(200).send(data)     
     }).populate("user","email")
 }
+
+exports.getsome_publishers= async function(req, res){
+    const publisher=Publisher.find({},(err,data)=>{
+        if (err) res.status(400).send({ error: err.message })
+        res.status(200).send(data)     
+    }).populate("user","email").limit(3)
+}
 exports.get_publishers_limit= async function(req, res){
     const publisher=Publisher.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
@@ -22,7 +29,7 @@ exports.get_publishers_limit= async function(req, res){
     }).populate("user","email").limit(3)
 }
 exports.get_publisher= async function(req, res){
-    const publisher=Publisher.find({_id:req.params.id},(err,data)=>{
+    const publisher=Publisher.findOne({_id:req.params.id},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)    
     }).populate("user","email")

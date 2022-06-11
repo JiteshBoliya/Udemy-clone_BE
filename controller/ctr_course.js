@@ -13,27 +13,27 @@ exports.get_courses= async function(req, res){
     const course=Course.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    }).populate('catagory')
+    }).populate('catagory').populate('publisher')
 }
 exports.get_courses_byPublisher= async function(req, res){
     const course=Course.find({publisher:req.params.publisher},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
-        console.log(data);
+        // console.log(data);
         res.status(200).send(data)     
-    })
+    }).populate('publisher')
 }
 exports.get_coursesLimit= async function(req, res){
     const course=Course.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    }).populate('catagory')
+    }).populate('catagory').populate('publisher').limit(3)
 }
 exports.get_course= async function(req, res){
     
-    const course=Course.find({_id:req.params.id},(err,data)=>{
+    const course=Course.findOne({_id:req.params.id},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    })
+    }).populate('publisher')
 }
 exports.update_course = async (req,res) => {
     var query = {_id:req.params.id},

@@ -9,18 +9,33 @@ exports.set_rating=async function(req, res){
         res.status(404).send({error: error.message})
     }
 }
-exports.get_ratings= async function(req, res){
-    const rating=Rating.find({},(err,data)=>{
+exports.get_rating_publisher= async function(req, res){
+    const rating=Rating.find({isDeleted:false,publisher:req.params.id},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    })
+    }).populate('user').populate('publisher').limit(3)
 }
-exports.get_rating= async function(req, res){
-    const rating=Rating.find({course:req.params.id},(err,data)=>{
+exports.get_rating_publisherAll= async function(req, res){
+    const rating=Rating.find({isDeleted:false,publisher:req.params.id},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    })
+    }).populate('user').populate('publisher')
 }
+
+exports.get_rating_course= async function(req, res){
+    const rating=Rating.find({isDeleted:false,course:req.params.id},(err,data)=>{
+        if (err) res.status(400).send({ error: err.message })
+        res.status(200).send(data)     
+    }).populate('user').populate('course').limit(3)
+}
+
+exports.get_rating_courseAll= async function(req, res){
+    const rating=Rating.find({isDeleted:false,course:req.params.id},(err,data)=>{
+        if (err) res.status(400).send({ error: err.message })
+        res.status(200).send(data)     
+    }).populate('user').populate('course')
+}
+
 exports.update_rating = async (req,res) => {
     var query = {_id:req.params.id},
       options = { upsert: true, setDefaultsOnInsert: true };

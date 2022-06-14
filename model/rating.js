@@ -7,6 +7,10 @@ const RatingSchema = new mongoose.Schema(
         type:mongoose.Schema.Types.ObjectId,
         ref: "Course",
     },
+    publisher:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref: "Publisher",
+    },
     rating:{
         type:Number
     },
@@ -18,7 +22,8 @@ const RatingSchema = new mongoose.Schema(
         ref: "Subscriber",    
     },
     uploadDate:{
-        type:Date
+        type:Date,
+        default:new Date()
     },
     isDeleted:{
       type:Boolean,

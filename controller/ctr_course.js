@@ -18,7 +18,6 @@ exports.get_courses= async function(req, res){
 exports.get_courses_byPublisher= async function(req, res){
     const course=Course.find({publisher:req.params.publisher},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
-        // console.log(data);
         res.status(200).send(data)     
     }).populate('publisher')
 }

@@ -24,27 +24,21 @@ exports.get_subscriber_limit= async function(req, res){
 exports.get_subscriber= async function(req, res){
     const subscriber=Subscriber.findOne({user:req.params.id},(err,data)=>{
         if (err)return res.status(400).send({ error: err.message })
-        // console.log(data);
         res.status(200).send(data)     
     }).populate('user','email')
 }
 exports.update_subscriber = async (req,res) => {
     try{
         var obj=req.body;
-    //     console.log("id",req.params);
-    // console.log(obj);
     var query = {_id:req.params.id},
     update = {obj},
 
       options = { upsert: true, setDefaultsOnInsert: true };
     const subscriber=Subscriber.findOneAndUpdate(query,update, options, function (error, result) {
       if (error) return;
-    //   console.log("hii" ,result);
       res.status(200).send(result);
     });
     }catch(e){
-        // console.log(e);
-
     }
 };
 exports.Delete_subscriber = async (req,res) => {
@@ -56,10 +50,3 @@ exports.Delete_subscriber = async (req,res) => {
       res.status(200).send(result);
     });
 };
-
-// firstrstname: 'hardik',
-//   lastname: 'kayada',
-//   email: 'demo@123.com',
-//   phoneno: '64357356 567',
-//   nationality: 'india',
-//   job: 'software davloper'

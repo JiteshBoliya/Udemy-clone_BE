@@ -110,6 +110,10 @@ exports.resetpassword = async (req,res) => {
     res.status(200).send(result);
   });
 };
+exports.SendInvoice=async(req,res)=>{
+  // console.log("hiii");
+  invoiceMail(req.body.email)
+}
 // #class code genrator
 const makeid=()=>{
   let text = "";
@@ -152,6 +156,43 @@ const forgetPasswordMail =(email,password) => {
     to: email,
     subject: "Forget Password",
     html: `here your password <h1> ${password} </h1>`,
+  };
+  transporter.sendMail(mailOptions, function (error, info) {  
+    if (error) return 0
+  })
+  return 1
+};
+
+const invoiceMail =(email) => {
+  console.log(email);
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "jiteshb8182@gmail.com",
+      pass: "xbltmmfflttobfhj",
+    },
+  });
+  var mailOptions = {
+    from: "jiteshb8182@gmail.com",
+    to: email,
+    subject: "Invoice",
+    html: `<html>
+
+    <body align="center">
+    <div style="width: 100%;" align="center">
+    <img src="http://www.stampready.net/dashboard/editor/user_uploads/zip_uploads/2018/11/26/hFeo0Dp7TMykR9jAYP8ga4rv/zip-for-upload/images/Order-Placed-Icon.jpg" alt="" srcset="">
+    <h1>Order Placed Successfully</h1>
+    <h3>Enjoy your course with..</h3>
+      <b> Life time avaibility</b><br/>
+      <b> Updated contant</b><br/>
+      <b> Instructor support</b><br/>
+    <hr>
+    <img src="https://eduguard-html.netlify.app/dist/images/favicon/favicon.png" alt="">
+    <h2>OnlineCourse</h2>
+  </div>
+    </body>
+    
+    </html>`,
   };
   transporter.sendMail(mailOptions, function (error, info) {  
     if (error) return 0

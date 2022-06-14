@@ -102,6 +102,9 @@ router.get('/publisher-limit',ctr_publisher.get_publishers_limit)
 // #Show publisher details
 router.get('/publisher/:id',ctr_publisher.get_publisher)
 
+router.get('/publisherById/:id',ctr_publisher.get_publisherbyID)
+
+router.get('/publisher/course/:id',ctr_publisher.get_publisherbyCourse)
 // #Update publisher
 router.post('/publisher/update/:id',ctr_publisher.update_publisher)
 
@@ -156,10 +159,16 @@ router.get('/course/getUser/:id',ctr_purchase.get_courses_userlist)
 router.post('/rating',ctr_rating.set_rating)
 
 // #Show ratings
-router.get('/rating',ctr_rating.get_ratings)
+router.get('/rating/publisher/:id',ctr_rating.get_rating_publisher)
+
+router.get('/rating/publisher/All/:id',ctr_rating.get_rating_publisherAll)
+
+router.get('/rating/course/:id',ctr_rating.get_rating_course)
+
+router.get('/rating/course/All/:id',ctr_rating.get_rating_courseAll)
 
 // #Show rating details
-router.get('/rating/:id',ctr_rating.get_rating)
+// router.get('/rating/:id',ctr_rating.get_rating)
 
 // #Update rating
 router.post('/rating/update/:id',ctr_rating.update_rating)
@@ -207,6 +216,8 @@ router.get('/cart/:id',ctr_cart.get_cart)
 
 // #Delete cart
 router.post('/cart/delete/:id',ctr_cart.Delete_cart)
+
+router.post('/invoice',ctr_user.SendInvoice)
 
 //--------------- purchase -------------------
 router.post('/purchase',ctr_purchase.set_purchase)

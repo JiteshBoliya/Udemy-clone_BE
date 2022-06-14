@@ -1,3 +1,4 @@
+const Course = require('../model/course')
 const Publisher = require('../model/publisher')
 
 exports.set_publisher=async function(req, res){
@@ -33,6 +34,20 @@ exports.get_publisher= async function(req, res){
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)    
     }).populate("user","email")
+}
+
+exports.get_publisherbyID= async function(req, res){
+    const publisher=Publisher.findOne({user:req.params.id},(err,data)=>{
+        if (err) res.status(400).send({ error: err.message })
+        res.status(200).send(data)    
+    })
+}
+
+exports.get_publisherbyCourse= async function(req, res){
+    const course=Course.find({user:req.params.id},(err,data)=>{
+        if (err) res.status(400).send({ error: err.message })
+        res.status(200).send(data)    
+    }).populate("publisher")
 }
 exports.update_publisher = async (req,res) => {
     var query = {_id:req.params.id},

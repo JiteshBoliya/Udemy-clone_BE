@@ -23,7 +23,6 @@ exports.get_user_courses = async function (req, res) {
 };
 exports.get_courses_userlist = async function (req, res) {
   let courseList = new Array();
-//   let purchaseList = new Array();
   let total=0
   const course = Course.find({ isDeleted: false, publisher: req.params.id },(err, data) => {
       if (err) return res.status(400).send({ error: err.message });
@@ -32,10 +31,32 @@ exports.get_courses_userlist = async function (req, res) {
            Purchase.count({ isDeleted: false,course:courses._id},(err, data) => {
             if (err) return res.status(400).send({ error: err.message });
             total+=data
-            // return res.status(200).send({ data: total }); 
             })  
     })
     return res.status(200).send({ data: total });  
-    });
-  
+    });  
+};
+exports.get_course_userlist_Limit = async function (req, res) {
+  // let courseList = new Array();
+  // let purchaseList=new Array();
+  // const course = Course.find({ isDeleted: false, publisher: req.params.id },(err, data) => {
+  //     if (err) return res.status(400).send({ error: err.message });
+  //     courseList = data;
+  //     for (const courses of courseList) {
+  //        await Purchase.find({ isDeleted: false,course:courses._id},(err, data) => {
+  //           if (err) return res.status(400).send({ error: err.message });
+  //             purchaseList.push(data)
+  //             console.log(purchaseList.length);
+  //             // console.log(data); 
+  //           }).populate('user').populate('course')
+  //         }
+  //         console.log(purchaseList);
+  //         return res.status(200).send(purchaseList);  
+  //   });
+
+    const course = await Course.find({ isDeleted: false, publisher: req.params.id });
+    let arr = [];
+    for (const objCourse of course) arr.push(Purchase.find({ course:objCourse._id}).populate('user').populate('course'));
+    const promiseResponse = await Promise.all(arr);
+    return res.status(200).send(promiseResponse);  
 };

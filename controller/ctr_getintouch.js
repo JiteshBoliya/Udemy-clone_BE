@@ -37,7 +37,7 @@ exports.get_GIT_limit= async function(req, res){
   const git=GIT.find({isDeleted:false},(err,data)=>{
       if (err) res.status(400).send({ error: err.message })
       res.status(200).send(data)     
-  }).limit(3)
+  }).limit(10)
 }
 exports.ChangeStatus_GIT = async (req,res) => {
   var query = {_id:req.params.id},
@@ -52,7 +52,7 @@ exports.get_GIT_pagger= async function(req, res){
   GIT.find({isDeleted:false},(err,data)=>{
       if (err) res.status(400).send({ error: err.message })
       res.status(200).send(data)     
-  }).skip(req.params.page).limit(3)
+  }).skip(req.params.page).limit(10)
 }
 exports.get_GITbysort= async function(req, res){
   var sortObject = {};
@@ -68,7 +68,7 @@ exports.get_GITbysort= async function(req, res){
   const git=GIT.find({isDeleted:false},(err,data)=>{
       if (err) res.status(400).send({ error: err.message })
       res.status(200).send(data)   
-  }).sort(sortObject).limit(3)
+  }).sort(sortObject).limit(10)
 }
 exports.DeleteGIT = async (req,res) => {
   var query = {_id:req.params.id},

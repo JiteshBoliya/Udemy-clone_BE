@@ -120,6 +120,7 @@ router.get('/publisher/sort/:sortby/:sortwith',ctr_publisher.get_Publisherbysort
 // #Update status
 router.get('/publisher/statusChange/:id/:state',ctr_publisher.statusChange_publisher)
 
+
 //------------ Course --------------
 
 // #Add course
@@ -153,6 +154,8 @@ router.post('/course/update/:id',ctr_course.update_course)
 router.post('/course/delete/:id',ctr_course.Delete_course)
 
 router.get('/course/getUser/:id',ctr_purchase.get_courses_userlist)
+
+router.get('/course/purchase/:id',ctr_purchase.get_course_userlist_Limit)
 //------------ Rating --------------
 
 // #Add rating
@@ -175,6 +178,16 @@ router.post('/rating/update/:id',ctr_rating.update_rating)
 
 // #Delete rating
 router.post('/rating/delete/:id',ctr_rating.Delete_rating)
+
+
+router.get('/publisher/rating/:id',ctr_rating.get_rating_publisherAll)
+
+// #Paggination
+router.get('/rating/pagger/:id/:page',ctr_rating.get_Rating_pagger)
+
+// #Sorting
+router.get('/rating/sort/:id/:sortby/:sortwith',ctr_rating.get_Ratingbysort)
+
 
 //------------ Catagory --------------
 
@@ -238,29 +251,16 @@ router.get('/count-GIT',ctr_counter.count_GIT)
 
 router.get('/course/totalEnroll/:id',ctr_counter.count_enrollcourse)
 
-//------------------ payment -------------------
-// router.post("/charge", (req, res) => {
-//     try {
-//       stripe.customers
-//         .create({
-//           name: req.body.name,
-//           email: req.body.email,
-//           source: req.body.stripeToken
-//         })
-//         .then(customer =>
-//           stripe.charges.create({
-//             amount: req.body.amount * 100,
-//             currency: "inr",
-//             customer: customer.id
-//           })
-//         )
-//         .then(() => res.status(200).send({status:"Payment done"}))
-//         .catch(err => console.log(err));
-//     } catch (err) {
-//       res.send(err);
-//     }
-//   });
+router.get('/search/:data',ctr_user.Search)
 
-// router.post('order',token({ required: true }),ctr_payment.create)
+router.get('/count-Course/:id',ctr_counter.count_Publisher_course)
+
+router.get('/count-Course',ctr_counter.count_course)
+
+router.get('/count-sales/:id',ctr_counter.count_enrollcourse)
+
+router.get('/count-sales',ctr_counter.count_purchaseList)
+
+//------------------ payment -------------------
 
 module.exports = router

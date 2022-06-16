@@ -11,6 +11,10 @@ const PurchaseSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Course",
     },
+    date:{
+        type:Date,
+        default:new Date()
+    },
     isDeleted: {
       type: Boolean,
       default: false,

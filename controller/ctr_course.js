@@ -25,7 +25,7 @@ exports.get_coursesLimit= async function(req, res){
     const course=Course.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    }).populate('catagory').populate('publisher').limit(3)
+    }).populate('catagory').populate('publisher').limit(10)
 }
 exports.get_course= async function(req, res){
     

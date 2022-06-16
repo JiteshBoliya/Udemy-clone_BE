@@ -41,7 +41,7 @@ exports.get_TutorialsLimit= async function(req, res){
     const Tutorial=Tutorials.find({publisher:req.params.publisher,isDeleted:false},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    }).populate('course').limit(3)
+    }).populate('course').limit(10)
 }
 exports.get_Tutorial= async function(req, res){
     const Tutorial=Tutorials.find({_id:req.params.id},(err,data)=>{

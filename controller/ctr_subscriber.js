@@ -19,7 +19,7 @@ exports.get_subscriber_limit= async function(req, res){
     const subscriber=Subscriber.find({},(err,data)=>{
         if (err)return res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    }).populate("user","email").limit(3)
+    }).populate("user","email").limit(10)
 }
 exports.get_subscriber= async function(req, res){
     const subscriber=Subscriber.findOne({user:req.params.id},(err,data)=>{

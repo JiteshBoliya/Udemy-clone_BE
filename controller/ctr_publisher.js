@@ -1,5 +1,6 @@
 const Course = require('../model/course')
 const Publisher = require('../model/publisher')
+const purchase= require('../model/purachse')
 
 exports.set_publisher=async function(req, res){
     try {
@@ -21,13 +22,13 @@ exports.getsome_publishers= async function(req, res){
     const publisher=Publisher.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    }).populate("user","email").limit(3)
+    }).populate("user","email").limit(10)
 }
 exports.get_publishers_limit= async function(req, res){
     const publisher=Publisher.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    }).populate("user","email").limit(3)
+    }).populate("user","email").limit(10)
 }
 exports.get_publisher= async function(req, res){
     const publisher=Publisher.findOne({_id:req.params.id},(err,data)=>{
@@ -42,7 +43,6 @@ exports.get_publisherbyID= async function(req, res){
         res.status(200).send(data)    
     })
 }
-
 exports.get_publisherbyCourse= async function(req, res){
     const course=Course.find({user:req.params.id},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
@@ -79,22 +79,22 @@ exports.get_Publisher_pagger= async function(req, res){
     Publisher.find({},(err,data)=>{
         if (err) res.status(400).send({ error: err.message })
         res.status(200).send(data)     
-    }).populate("user","email").skip(req.params.page).limit(3)
+    }).populate("user","email").skip(req.params.page).limit(10)
 }  
 exports.get_Publisherbysort= async function(req, res){
     var sortObject = {};
     var stype =req.params.sortby
-    if(req.params.sortwith=='Assending'){
-        var sortwith=-1
-    }
-    else{
-    var sortwith=1
-    }
-    sortObject[stype] = sortwith;
-
+    if(req.params.sortwith=='Assending') var sortwith=-1
+    else var sortwith=1
+    sortObject[stype] = sortwith
     const publisher=Publisher.find((err,data)=>{
         if (err) res.status(400).send({ error: err.message })
-        // console.log(data[0].name);
         res.status(200).send(data)   
-    }).populate("user","email").sort(sortObject).limit(3)
+    }).populate("user","email").sort(sortObject).limit(10)
 }
+// exports.get_purchase= async function(req, res){
+//     const Purachse=purchase.find({isDeleted:false,publisher:req.params.id},(err,data)=>{
+//         if (err) res.status(400).send({ error: err.message })
+//         res.status(200).send(data)     
+//     }).populate('user').populate('course').limit(5)
+// }

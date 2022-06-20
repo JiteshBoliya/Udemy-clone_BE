@@ -235,11 +235,12 @@ exports.Search = async (req, res) => {
   x = x.trim();
   console.log(x.length);
   try {
-    const course = await Course
-      .find({ title: { $regex: x, $options: "i" } })
+    console.log(typeof(x));
+    
+      const course = await Course
+      .find({ title: { $regex: x, $options: "i" },name:{ $regex: x, $options: "i" } })
       .populate("catagory")
       .populate("publisher");
-
     if (course.length === 0) {
       return res.status(200).json({ data: "0" });
     }

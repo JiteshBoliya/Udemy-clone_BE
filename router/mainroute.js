@@ -261,6 +261,10 @@ router.get('/count-sales/:id',ctr_counter.count_enrollcourse)
 
 router.get('/count-sales',ctr_counter.count_purchaseList)
 
+router.get('/count-rating/:id',ctr_purchase.get_AVG_Rating_Course)
+
+
+
 //------------------ payment -------------------
 
 module.exports = router

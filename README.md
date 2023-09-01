@@ -37,7 +37,9 @@ Here's a detailed description of the Udemy-Clone Project Back End in Node.js:
 
 **Technology stack**
 
-- Programming Language: Node.js
+
+- Programming Language:
+![nodejs-1-logo](https://github.com/jitesh8182/Udemy-clone_BE/assets/75196566/89da3e0a-66c7-4fb3-953a-933090a3e3a9)
 - Web Framework: Express.js
 - Database: MongoDB    
 - Authentication and Authorization: Passport.js, JSON Web Tokens (JWT)

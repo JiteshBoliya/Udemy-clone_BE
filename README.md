@@ -9,7 +9,7 @@ Here's a detailed description of the Udemy-Clone Project Back End in Node.js:
 
 2. **Course Management**: 
   Instructors can create, update, and delete courses through the back end. 
-  It manages course information, such as titles, descriptions, and price, and ensures that only authorized instructors can modify their respective courses.
+  It manages course information, such as titles, descriptions, and prices, and ensures that only authorized instructors can modify their respective courses.
 
 3. **Content Storage**: 
   The back end manages the storage of course content, such as video lectures, PDFs, and assignments. 
@@ -38,32 +38,34 @@ Here's a detailed description of the Udemy-Clone Project Back End in Node.js:
 **Technology stack**
 
 
-- Programming Language: 
-<img src="https://cdn.freebiesupply.com/logos/thumbs/2x/nodejs-1-logo.png" width="100PX" alt="Node.js">
+- Programming Language:
+
+   [![My Skills](https://skillicons.dev/icons?i=nodejs)](https://skillicons.dev)
 
 - Web Framework:
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/64/Expressjs.png" width="100PX" alt="Express.js">
+  
+   [![My Skills](https://skillicons.dev/icons?i=express)](https://skillicons.dev)
 
 - Database: 
-<img src="https://global-uploads.webflow.com/628e6648a47e6727d5c69a2a/62f120f634f46f92d05298c6_MongoDB_Logo.svg.png" width="100PX" alt="MongoDB">
+
+   [![My Skills](https://skillicons.dev/icons?i=mongodb)](https://skillicons.dev)
 
 - Authentication and Authorization:
-<p>
-<img src="https://github.com/jitesh8182/Udemy-clone_BE/assets/75196566/aa04a0dc-8799-4643-a698-8c5ff5bd7c94" width="50PX" alt="Passport.js">
-<img src="https://seeklogo.com/images/J/jwt-logo-65D86B4640-seeklogo.com.png" width="50PX" alt="JWT">
-</p>
-- Payment Processing: 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png" width="100PX" alt="Stripe">
+    <p>
+      <img src="https://github.com/jitesh8182/Udemy-clone_BE/assets/75196566/aa04a0dc-8799-4643-a698-8c5ff5bd7c94" width="50PX" alt="Passport.js">
+      <img src="https://seeklogo.com/images/J/jwt-logo-65D86B4640-seeklogo.com.png" width="50PX" alt="JWT">
+    </p>
+- Payment Processing:
+  
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Stripe_Logo%2C_revised_2016.svg/2560px-Stripe_Logo%2C_revised_2016.svg.png" width="100PX" alt="Stripe">
 
 - Version Control:
-<img src="https://git-scm.com/images/logos/downloads/Git-Logo-2Color.png" width="100PX" alt="Git">
+
+   [![My Skills](https://skillicons.dev/icons?i=git)](https://skillicons.dev)
 
 - Development Tools:
-<p>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/1024px-Visual_Studio_Code_1.35_icon.svg.png" width="50PX" alt="Visual Studio Code">
-<img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Postman_%28software%29.png" width="150PX" alt="Postman">
-</p>
- Visual Studio Code, Postman
+
+   [![My Skills](https://skillicons.dev/icons?i=vscode,postman)](https://skillicons.dev)
 
 This technology stack provides a solid foundation for developing a Udemy-Clone project back end in Node.js. 
 
